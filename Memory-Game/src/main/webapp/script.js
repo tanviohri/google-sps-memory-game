@@ -66,8 +66,9 @@ function init() {
     // A for loop creates <li> tags with the class of card for every <i> tag
     // A class of fa fa- and a name of each object from the objects=[] array
     for (let i = 0; i < allCards.length; i++) {
-        $deck.append($('<li class="card"><i class="fa fa-' + allCards[i] + '"></i></li>'))
+        $deck.append($('<li class="card" data-symbol='+ allCards[i] + '><i class="fa fa-' + allCards[i] + '"></i></li>'))
     }
+    //$deck.find('[data-symbol="bug"]').addClass('match');
     addCardListener();
 }
 
@@ -85,14 +86,15 @@ let addCardListener = function () {
     $deck.find('.card').bind('click', function () {
         let $this = $(this);
         if ($this.hasClass('open') || $this.hasClass('match')) { return true; }
-        let card = $this.context.innerHTML;
-        //console.log(card); this gives <i class="fa fa-cube"></i>
+        //let card = $this.context.innerHTML;
+        let symbol=$this.attr("data-symbol");
+        //$deck.find('[data-symbol='+symbol+']').addClass('match');
         $this.addClass('open');
-        allOpen.push(card);
+        allOpen.push(symbol);
 
         // Compares cards if they matched
         if (allOpen.length > 1) {
-            if (card === allOpen[0]) {
+            if (symbol === allOpen[0]) {
                 $deck.find('.open').addClass('match');
                 setTimeout(function () {
                     $deck.find('open').removeClass('open');
