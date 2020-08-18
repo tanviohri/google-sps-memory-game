@@ -1,7 +1,7 @@
 package com.google.sps.data;
 
-import javafx.util.Pair; 
-import java.util.ArrayList; 
+import java.util.*; 
+import com.google.appengine.api.users.*;
 
 class Game{
 
@@ -16,7 +16,7 @@ class Game{
 
 	private HashMap<User, TeamMember> userToTeamMember;
 
-	private ArrayList< Pair <int, int> > moves;
+	private ArrayList< Pair <Integer, Integer> > moves;
 
 	// true -> red, false -> blue
 	private boolean chance;
@@ -51,13 +51,13 @@ class Game{
 
 	// Adding the new user to the team with less number of participants
 	public void addUser(User user, String nickName){
-		if(red.getSize() > blue.getSize){
+		if(red.getSize() > blue.getSize()){
 			TeamMember teamMember = new TeamMember(user, nickName, "Blue");
-			blue.add(teamMember);
+			blue.addTeamMember(teamMember);
 			userToTeamMember.put(user, teamMember);
 		}else{
-			TeamMember teamMember = new TeamMember(user, nickNamem "Red");
-			red.add(teamMember);
+			TeamMember teamMember = new TeamMember(user, nickName, "Red");
+			red.addTeamMember(teamMember);
 			userToTeamMember.put(user, teamMember);
 		}
 	}
@@ -75,28 +75,27 @@ class Game{
 	}
 
 	public void move(int row, int col){
-		moves.add(new Pair <int, int> (row, col));
+		moves.add(new Pair <Integer, Integer> (row, col));
 		currentBoard[row][col] = !currentBoard[row][col];
 	}
 
-	private getTileId(Pair <int, int> p){
+	private int getTileId(Pair <Integer, Integer> p){
 		return board[p.getKey()][p.getValue()];
 	}
 
-	private undoMove(Pair <int, int> p){
-		currentBoard[row][col] = !currentBoard[row][col];	
+	public void undoMove(Pair <Integer, Integer> p){
+		currentBoard[p.getKey()][p.getValue()] = !currentBoard[p.getKey()][p.getValue()];	
 	}
 
-	public int checkForSameTiles(){
-		if(getTileId(moves.get(0)) == getTileId(moves.get(1))){
-			moves.clear();
-			return 1;
-		}else{
-			undoMove(moves.get(0));
-			undoMove(moves.get(1));
-			moves.clear();
-			return 0;
-		}
+    public void undoAllMoves(){
+        for(Pair <Integer, Integer> p : moves){
+            undoMove(p);
+        }
+        moves.clear();
+    }
+
+	public boolean checkForSameTiles(){
+		return getTileId(moves.get(0)) == getTileId(moves.get(1));
 	}
 
 	public boolean getChance(){
@@ -115,7 +114,7 @@ class Game{
 
 		Game that = (Game) o;
 
-		if(this.board.equals(that.board) && this.currentBoard.equals(that.currentBoard) && this.red.equals(that.red) && this.blue.equals(that.blue) && this.userToTeamMember.equals(that.userToTeamMember) && this.moves.equals(that.moves) && this.chance.equals(that.chance) && this.messages.equals(that.messages)){
+		if(this.board.equals(that.board) && this.currentBoard.equals(that.currentBoard) && this.red.equals(that.red) && this.blue.equals(that.blue) && this.userToTeamMember.equals(that.userToTeamMember) && this.moves.equals(that.moves) && this.chance == that.chance && this.messages.equals(that.messages)){
 			return true;
 		}else{
 			return false;
@@ -131,7 +130,7 @@ class Game{
 		result = 31 * result + blue.hashCode();
 		result = 31 * result + userToTeamMember.hashCode();
 		result = 31 * result + moves.hashCode();
-		result = 31 * result + chance;
+		result = 31 * result + (int)(chance ? 1 : 0);
 		result = 31 * result + messages.hashCode();
 		return result;
 	}

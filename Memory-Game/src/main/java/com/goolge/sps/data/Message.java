@@ -1,6 +1,6 @@
 package com.google.sps.data;
 
-class Message{
+public class Message{
 
 	private final TeamMember teamMember;
 	private final long time;
@@ -12,15 +12,15 @@ class Message{
 		this.text = text;
 	}
 
-	public getTeamMember(){
+	public TeamMember getTeamMember(){
 		return teamMember;
 	}
 
-	public getTime(){
+	public long getTime(){
 		return time;
 	}
 
-	public getText(){
+	public String getText(){
 		return text;
 	}
 
@@ -49,8 +49,8 @@ class Message{
 	}
 
 	@Override
-	public toString(){
-		return "{TeamMember: " + teamMember.toString + ", Time: " + time + ", Text: " + text + "}";
+	public String toString(){
+		return "{TeamMember: " + teamMember.toString() + ", Time: " + time + ", Text: " + text + "}";
 	}
 
 }	

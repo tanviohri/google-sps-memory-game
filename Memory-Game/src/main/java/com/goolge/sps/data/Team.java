@@ -1,6 +1,6 @@
 package com.google.sps.data;
 
-import com.google.appengine.api.users;
+import com.google.appengine.api.users.*;
 import java.util.ArrayList;
 
 class Team{
@@ -48,7 +48,7 @@ class Team{
 		if(teamMembers.isEmpty()){
 			return false;
 		}
-		return teamMember.equals(teamMembers.get(0))
+		return teamMember.equals(teamMembers.get(0));
 	}
 
 	public boolean belongs(TeamMember teamMember){
@@ -75,7 +75,8 @@ class Team{
 		}
 	}
 
-	@Override int hashCode(){
+	@Override 
+    public int hashCode(){
 		int result = 17;
 		result = 31 * result + teamMembers.hashCode();
 		result = 31 * result + score;
@@ -84,7 +85,8 @@ class Team{
 		return result;
 	}
 
-	@Override String toString(){
+	@Override 
+    public String toString(){
 		return "{TeamName: " + teamName + ", Score: " + score + ", TeamMembers: " + teamMembers.toString() + ", Messages: " + messages.toString() + "}";
 	}
 
