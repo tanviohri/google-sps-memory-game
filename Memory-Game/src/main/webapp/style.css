@@ -39,8 +39,8 @@ h1 {
  */
 
 .deck {
-    width: 600px;
-    min-height: 600px;
+    width: 400px;
+    min-height: 400px;
     background: linear-gradient(160deg, #cacaca 0%, #aa7ecd 100%);
     padding: 32px;
     border-radius: 10px;
@@ -57,8 +57,8 @@ h1 {
 }
 
 .deck .card {
-    height: 100px;
-    width: 100px;
+    height: 50px;
+    width: 50px;
     background: #2e3d49;
     font-size: 0;
     color: black;
@@ -74,13 +74,7 @@ h1 {
     transform: rotateY(0) !important;
     background: darkgrey;
     cursor: default;
-    font-size: 50px;
-}
-
-.deck .card.match {
-    cursor: default;
-    background: rgb(77, 197, 53);
-    font-size: 50px;
+    font-size: 30px;
 }
 
 /*

@@ -12,130 +12,54 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * Adds a random greeting to the page.
- */
+let objects = ['flag', 'glass', 'star', 'coffee', 'circle', 'cloud', 'bug', 'bicycle', 'leaf',
+    'cube', 'anchor', 'paper-plane-o', 'bolt', 'bomb', 'diamond'],
 
- // All usefull objects and shortcuts to simplify coding
-let objects = ['bug', 'bug', 'bicycle', 'bicycle', 'leaf', 'leaf', 'cube', 'cube', 'anchor', 'anchor', 'paper-plane-o', 'paper-plane-o', 'bolt', 'bolt', 'bomb', 'bomb', 'diamond', 'diamond'],
-
-    // Useful selectors shortened
-    $container = $('.container'),
-    $scorePanel = $('.score-panel'),
-    $scoreRed = $('.score-red'),
-    $turn = $('.turn'),
-    $scoreBlue = $('.score-blue'),
     $deck = $('.deck'),
 
-    // Set variables to shorten code
-    allOpen = [],
-    matchRed = 0,
-    matchBlue=0;
-    wait = 420,
-    totalCard = objects.length / 2;
+    n = 5; //will come from datastore, initialized here for testing purpose only
+    m = 6; //will come from datastore, initialized here for testing purpose only
 
-// Shuffling function: enables that no two games have the same card arrangement 
-function shuffle(array) {
-    let currentIndex = array.length, temporaryValue, randomIndex;
-
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-    return array;
-}
-
-// The function init() enables the game to begin
 function init() {
 
-    // The shuffle function shuffles the objects array
-    let allCards = shuffle(objects);
+    let board = new Array(n + 1); //will come from datastore, initialized here for testing purpose only
+    for (let i = 1; i <= n; i++) {
+        board[i] = new Array(m + 1);
+    }
+    for (let i = 1; i <= n; i++) {
+        for (let j = 1; j <= m; j++) {
+            board[i][j] = Math.floor(((i - 1) * m + j - 1) / 2);
+        }
+    }
     $deck.empty();
 
-    // The game starts with no matching cards
-    matchRed = 0;
-    matchBlue=0;
-    turn="Red";
-    $scoreRed.html(matchRed);
-    $scoreBlue.html(matchBlue);
-    $turn.html(turn);
+    //matchRed = 0;
+    //matchBlue=0;
+    //turn="Red";
+    //$scoreRed.html(matchRed);
+    //$scoreBlue.html(matchBlue);
+    //$turn.html(turn);
 
-    // A for loop creates <li> tags with the class of card for every <i> tag
-    // A class of fa fa- and a name of each object from the objects=[] array
-    for (let i = 0; i < allCards.length; i++) {
-        $deck.append($('<li class="card" data-symbol='+ allCards[i] + '><i class="fa fa-' + allCards[i] + '"></i></li>'))
+    for (let i = 1; i <= n; i++) {
+        for (let j = 1; j <= m; j++) {
+            $deck.append($(`<li class="card" data-row=${i} data-col=${j}><i class="fa fa-${objects[board[i][j]]}"></i></li>`))
+        }
     }
-    //$deck.find('[data-symbol="bug"]').addClass('match');
     addCardListener();
 }
 
-// Add boostrap modal alert window showing time, moves, score it took to finish the game, toggles when all pairs are matched.
-function gameOver(team) {
-    $('#winnerText').text(`${team} Team wins! Well done!`);
-    $('#winnerModal').modal('toggle');
-}
-
-// This function allows each card to be validated that is an equal match to another card that is clicked on to stay open.
-// If cards do not match, both cards are flipped back over.
-let addCardListener = function () {
-
-    // With the following, the card that is clicked on is flipped
-    $deck.find('.card').bind('click', function () {
+let addCardListener = function() {
+    $deck.find('.card').bind('click', function() {
         let $this = $(this);
-        if ($this.hasClass('open') || $this.hasClass('match')) { return true; }
-        //let card = $this.context.innerHTML;
-        let symbol=$this.attr("data-symbol");
-        //$deck.find('[data-symbol='+symbol+']').addClass('match');
-        $this.addClass('open');
-        allOpen.push(symbol);
-
-        // Compares cards if they matched
-        if (allOpen.length > 1) {
-            if (symbol === allOpen[0]) {
-                $deck.find('.open').addClass('match');
-                setTimeout(function () {
-                    $deck.find('open').removeClass('open');
-                }, wait);
-                if(turn=="Red")
-                {
-                    matchRed++;                    
-                    $scoreRed.html(matchRed);
-                }
-                else if(turn=="Blue") 
-                {
-                    matchBlue++;                    
-                    $scoreBlue.html(matchBlue);
-                }
-                // If cards are not matched, there is a delay of 630ms, and the cards will turn back cover up.
-            } else {
-                setTimeout(function () {
-                    $deck.find('.open').removeClass('open');
-                }, wait / 1.5);
-            }
-
-            // The allOpen array specifies all added cards facing up
-            allOpen = [];
-            if(turn=="Red") turn="Blue";
-            else if(turn=="Blue") turn="Red";
-            $turn.html(turn);
-        }
-
-        // The game is finished once all cards have been matched, with a short delay
-        if (matchRed > totalCard/2) {
-            setTimeout(function () {
-                gameOver("Red");
-            }, 500);
-        }
-        else if(matchBlue > totalCard/2){
-            setTimeout(function () {
-                gameOver("Blue");
-            }, 500);
-        }
+        if ($this.hasClass('open')) { return true; }
+        //send {$this.attr("data-row"),$this.attr("data-col")} to datastore
     });
 }
 
+function flipCard(row, col) {
+    let card = $deck.find('[data-row=' + row + '][data-col=' + col + ']');
+    if(card.hasClass('open')) {card.removeClass('open');}
+    else card.addClass('open');
+}
 init();
- 
+
