@@ -3,7 +3,7 @@ package com.google.sps.data;
 import java.util.*; 
 import com.google.appengine.api.users.*;
 
-class Game{
+class Game implements Chat{
 
 	private final int n = 5;
 	private final int m = 6;
