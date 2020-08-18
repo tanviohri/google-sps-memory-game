@@ -8,6 +8,13 @@ public class TeamMember{
 	private final String nickname;
 	private final String teamName;
 
+    //necessary for objectify
+    public TeamMember(){
+        user = null;
+        nickname = "";
+        teamName = "";
+    }
+
 	public TeamMember(User user, String nickname, String teamName){
 		this.user = user;
 		this.nickname = nickname;

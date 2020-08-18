@@ -6,6 +6,13 @@ public class Message{
 	private final long time;
 	private final String text;
 
+    //necessary for objectify
+    public Message(){
+        teamMember = new TeamMember();
+        time = 0;
+        text = "";
+    }
+
 	public Message(TeamMember teamMember, long time, String text){
 		this.teamMember = teamMember;
 		this.time = time;

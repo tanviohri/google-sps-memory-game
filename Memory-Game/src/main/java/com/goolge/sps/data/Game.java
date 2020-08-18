@@ -2,8 +2,12 @@ package com.google.sps.data;
 
 import java.util.*; 
 import com.google.appengine.api.users.*;
+import com.googlecode.objectify.annotation.*;
 
+@Entity
 class Game implements Chat{
+
+    @Id private Long id;
 
 	private final int n = 5;
 	private final int m = 6;
@@ -30,6 +34,7 @@ class Game implements Chat{
 
 		for(int i = 1; i <= n * m / 2; i++){
 			arr.add(i);
+            arr.add(i);
 		}
 		Collections.shuffle(arr);
 
@@ -48,6 +53,10 @@ class Game implements Chat{
 		messages = new ArrayList<>();
 
 	}
+
+    public long getId(){
+        return id;
+    }
 
 	// Adding the new user to the team with less number of participants
 	public void addUser(User user, String nickName){

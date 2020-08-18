@@ -10,6 +10,14 @@ class Team implements Chat{
 	private int score;
 	private ArrayList<Message> messages;
 
+    //necessary for objectify
+    public Team(){
+        teamMembers = new ArrayList<>();
+        teamName = "";
+        score = 0;
+        messages = new ArrayList<>();
+    }
+
 	public Team(String teamName){
 		this.teamName = teamName;
 		teamMembers = new ArrayList<TeamMember>();
