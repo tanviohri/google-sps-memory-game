@@ -1,51 +1,85 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title></title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
-    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
-    <link rel="stylesheet" href="style.css">
-  </head>
 
-  <body>
-    <header class="masthead">
-        <div class="container">
-        </div>
-    </header>
-    
-<font color="black">
-    <div class="modal fade" id="winnerModal" tabindex="-1" role="dialog" aria-labelledby="winnerModal-label">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="winnerModal-label">We Have a Winner!</h4>
-                </div>
-                <div class="modal-body">
-                    <p id="winnerText"></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" onclick="init();" class="btn btn-default" data-dismiss="modal">Go Again!</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</font>
-    <div class="container">
-                <section class="score-panel">                
-                <font color="red"> Red Team's Score: <span class="score-red">0</span> </font>
-                <font color="blue"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Blue Team's Score: <span class="score-blue">0</span> </font>
-                <br>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+	<link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+	<button class="chat-open-button" onclick="openForm('team')" style="left:12px">Team Chat</button>
+
+	<div class="chat-popup" id="teamChat" style="left:12px">
+		<form class="chat-form-container" id="teamChatForm">
+			<font color="black">
+				<h2>Team Chat</h2>
+			</font>
+
+			<textarea placeholder="Type message.." name="teamMsg" required></textarea>
+
+			<button type="submit" class="btn">Send</button>
+			<button type="button" class="btn cancel" onclick="closeForm('team')">Close</button>
+		</form>
+	</div>
+
+	<button class="chat-open-button" onclick="openForm('room')" style="right:12px">Room Chat</button>
+
+	<div class="chat-popup" id="roomChat" style="right:12px">
+		<form class="chat-form-container" id="roomChatForm">
+			<font color="black">
+				<h2>Room Chat</h2>
+			</font>
+
+			<textarea placeholder="Type message.." name="roomMsg" required></textarea>
+
+			<button type="submit" class="btn">Send</button>
+			<button type="button" class="btn cancel" onclick="closeForm('room')">Close</button>
+		</form>
+	</div>
+	<header class="masthead">
+		<div class="container">
+		</div>
+	</header>
+
+	<font color="black">
+		<div class="modal fade" id="winnerModal" tabindex="-1" role="dialog" aria-labelledby="winnerModal-label">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="winnerModal-label">We Have a Winner!</h4>
+					</div>
+					<div class="modal-body">
+						<p id="winnerText"></p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" onclick="init();" class="btn btn-default" data-dismiss="modal">Go Again!</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</font>
+	<div class="container">
+		<section class="score-panel">
+			<font color="red"> Red Team's Score: <span class="score-red">0</span> </font>
+			<font color="blue"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Blue Team's Score: <span class="score-blue">0</span>
+			</font>
+			<br>
                 Chance: <span class="turn">Red</span> Team
-        </section>
-        <ul class="deck"></ul>
-    </div>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js'></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-    <script src="./script.js"></script>
-    
-  </body>
+		</section>
+		<ul class="deck"></ul>
+	</div>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js'></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+	</script>
+	<script src="./script.js"></script>
+	<script src="./chat.js"></script>
+</body>
+
 </html>
