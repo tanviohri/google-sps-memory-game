@@ -7,7 +7,6 @@ import javax.servlet.http.*;
 import com.google.gson.Gson;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
-import com.google.gson.Gson;
 
 @WebServlet("check-login")
 public class CheckLogin extends HttpServlet{
