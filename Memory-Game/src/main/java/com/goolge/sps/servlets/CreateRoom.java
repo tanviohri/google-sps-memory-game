@@ -13,7 +13,7 @@ import com.google.sps.data.Game;
 public class CreateRoom extends HttpServlet{
 
     @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
 
         Game game = new Game();
 

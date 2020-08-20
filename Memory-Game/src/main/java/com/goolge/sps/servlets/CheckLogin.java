@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 public class CheckLogin extends HttpServlet{
 
     @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
 
         boolean loggedIn = UserServiceFactory.getUserService().isUserLoggedIn();
 
