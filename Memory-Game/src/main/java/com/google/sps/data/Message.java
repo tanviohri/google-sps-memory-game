@@ -31,6 +31,10 @@ public class Message{
 		return text;
 	}
 
+    public String getTeamName(){
+        return teamMember.getTeamName();
+    }
+
 	@Override
 	public boolean equals(Object o){
 		if(o == null) return false;

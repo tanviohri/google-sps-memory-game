@@ -100,6 +100,14 @@ public class Game implements Chat{
 		messages.add(message);
 	}
 
+    public void addMessageInTeamChat(Message message){
+        if(message.getTeamName().equals("Red")){
+            red.addMessage(message);
+        }else{
+            blue.addMessage(message);
+        }
+    }
+
 	public int getNumberOfMoves(){
 		return moves.size();
 	}

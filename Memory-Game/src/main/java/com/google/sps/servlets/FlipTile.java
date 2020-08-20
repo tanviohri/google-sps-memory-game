@@ -4,12 +4,10 @@ import java.io.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import org.json.simple.*;
-import org.json.simple.parser.*;
 import java.util.concurrent.TimeUnit;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
-import com.google.gson.Gson;
 import com.google.sps.data.*;
 import static com.google.sps.util.Util.*;
 
@@ -27,7 +25,6 @@ public class FlipTile extends HttpServlet{
         int col = (int) obj.get("col");
 
         Game game = ofy().load().type(Game.class).id(inviteCode).now();
-        
         User user = UserServiceFactory.getUserService().getCurrentUser();
         TeamMember teamMember = game.getTeamMemberFromUser(user);
 
