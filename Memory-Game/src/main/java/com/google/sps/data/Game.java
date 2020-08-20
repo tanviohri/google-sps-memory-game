@@ -3,9 +3,10 @@ package com.google.sps.data;
 import java.util.*; 
 import com.google.appengine.api.users.*;
 import com.googlecode.objectify.annotation.*;
+import com.google.sps.util.Pair;
 
 @Entity
-class Game implements Chat{
+public class Game implements Chat{
 
     @Id private Long id;
 
@@ -23,7 +24,7 @@ class Game implements Chat{
 	private ArrayList< Pair <Integer, Integer> > moves;
 
 	// true -> red, false -> blue
-	private boolean chance;
+	private Chance chance;
 
 	private ArrayList<Message> messages;
 
@@ -33,7 +34,7 @@ class Game implements Chat{
 		List<Integer> arr = new ArrayList<>();
 
 		for(int i = 1; i <= n * m / 2; i++){
-			arr.add(i);
+            arr.add(i);
             arr.add(i);
 		}
 		Collections.shuffle(arr);
@@ -49,7 +50,7 @@ class Game implements Chat{
 		blue = new Team("Blue");
 		userToTeamMember = new HashMap<>();
 		moves = new ArrayList<>();
-		chance = true;
+		chance = Chance.RED;
 		messages = new ArrayList<>();
 
 	}
@@ -64,6 +65,18 @@ class Game implements Chat{
 
     public boolean[][] getCurrentBoard(){
         return currentBoard;
+    }
+
+    public Team getRedTeam(){
+        return red;
+    }
+
+    public Team getBlueTeam(){
+        return blue;
+    }
+
+    public TeamMember getTeamMemberFromUser(User user){
+        return userToTeamMember.get(user);
     }
 
 	// Adding the new user to the team with less number of participants
@@ -104,6 +117,10 @@ class Game implements Chat{
 		currentBoard[p.getKey()][p.getValue()] = !currentBoard[p.getKey()][p.getValue()];	
 	}
 
+    public void clearMoves(){
+        moves.clear();
+    }
+
     public void undoAllMoves(){
         for(Pair <Integer, Integer> p : moves){
             undoMove(p);
@@ -115,12 +132,24 @@ class Game implements Chat{
 		return getTileId(moves.get(0)) == getTileId(moves.get(1));
 	}
 
-	public boolean getChance(){
+    public void incrementScore(){
+        if(chance == Chance.RED){
+            red.incrementScore();
+        }else{
+            blue.incrementScore();
+        }
+    }
+
+	public Chance getChance(){
 		return chance;
 	}
 
 	public void flipChance(){
-		chance = !chance;
+		if(chance == Chance.RED){
+            chance = Chance.BLUE;
+        }else{
+            chance = Chance.RED;
+        }
 	}
 
 	@Override
@@ -147,7 +176,7 @@ class Game implements Chat{
 		result = 31 * result + blue.hashCode();
 		result = 31 * result + userToTeamMember.hashCode();
 		result = 31 * result + moves.hashCode();
-		result = 31 * result + (int)(chance ? 1 : 0);
+		result = 31 * result + (int)(chance == Chance.RED ? 1 : 0);
 		result = 31 * result + messages.hashCode();
 		return result;
 	}

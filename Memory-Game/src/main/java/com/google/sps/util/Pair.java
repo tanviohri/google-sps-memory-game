@@ -1,4 +1,4 @@
-package com.google.sps.data;
+package com.google.sps.util;
 
 public class Pair<U, V>
 {

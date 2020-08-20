@@ -3,7 +3,7 @@ package com.google.sps.data;
 import com.google.appengine.api.users.*;
 import java.util.ArrayList;
 
-class Team implements Chat{
+public class Team implements Chat{
 
 	private ArrayList<TeamMember> teamMembers;
 	private String teamName;
@@ -32,9 +32,17 @@ class Team implements Chat{
 		return teamName;
 	}
 
-	public ArrayList<TeamMember> getTeamMenbers(){
+	public ArrayList<TeamMember> getTeamMembers(){
 		return teamMembers;
 	}
+
+    public ArrayList<String> getAllTeamMemberNicknames(){
+        ArrayList<String> allNicknames = new ArrayList<>();
+        for(TeamMember teamMember: teamMembers){
+            allNicknames.add(teamMember.getNickname());
+        }
+        return allNicknames;
+    }
 
 	public int getSize(){
 		return teamMembers.size();
