@@ -5,7 +5,7 @@ import com.google.appengine.api.users.*;
 import com.googlecode.objectify.annotation.*;
 
 @Entity
-class Game implements Chat{
+public class Game implements Chat{
 
     @Id private Long id;
 
@@ -33,7 +33,7 @@ class Game implements Chat{
 		List<Integer> arr = new ArrayList<>();
 
 		for(int i = 1; i <= n * m / 2; i++){
-			arr.add(i);
+            arr.add(i);
             arr.add(i);
 		}
 		Collections.shuffle(arr);

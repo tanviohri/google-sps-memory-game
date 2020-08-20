@@ -3,7 +3,7 @@ package com.google.sps.data;
 import com.google.appengine.api.users.*;
 import java.util.ArrayList;
 
-class Team implements Chat{
+public class Team implements Chat{
 
 	private ArrayList<TeamMember> teamMembers;
 	private String teamName;
