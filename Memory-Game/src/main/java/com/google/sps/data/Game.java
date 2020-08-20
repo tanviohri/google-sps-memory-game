@@ -66,6 +66,14 @@ public class Game implements Chat{
         return currentBoard;
     }
 
+    public Team getRedTeam(){
+        return red;
+    }
+
+    public Team getBlueTeam(){
+        return blue;
+    }
+
 	// Adding the new user to the team with less number of participants
 	public void addUser(User user, String nickName){
 		if(red.getSize() > blue.getSize()){

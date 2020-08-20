@@ -1,12 +1,12 @@
 package com.google.sps.servlets;
 
-import java.io.IOException;
+import java.io.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+import org.json.simple.*;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
-import com.google.gson.Gson;
 import com.google.sps.data.Game;
 
 @WebServlet("create-room")
@@ -19,12 +19,13 @@ public class CreateRoom extends HttpServlet{
 
         ofy().save().entity(game).now();
 
-        long inviteCode = game.getId();
+        JSONObject obj = new JSONObject();
+        obj.put("inviteCode", game.getId());
 
-        Gson gson = new Gson();
+        StringWriter out = new StringWriter();
+        obj.writeJSONString(out);
+
         response.setContentType("application/json");
-        response.getWriter().println(gson.toJson(inviteCode));
-
+        response.getWriter().println(out.toString());
     }
-
 }

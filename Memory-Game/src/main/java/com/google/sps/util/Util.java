@@ -2,6 +2,8 @@ package com.google.sps.util;
 
 import javax.servlet.http.*;
 import java.io.*;
+import org.json.simple.*;
+import org.json.simple.parser.*;
 
 
 public class Util{
@@ -38,5 +40,20 @@ public class Util{
 
         body = stringBuilder.toString();
         return body;
+    }
+
+    public static JSONObject getJsonObjectFromRequest(HttpServletRequest request) throws IOException{
+        String data = getBodyFromRequest(request);
+        JSONParser parser = new JSONParser();
+        Object obj = null;
+
+        try{
+            obj = parser.parse(data);
+        }catch(ParseException pe){
+            System.out.println("position: " + pe.getPosition());
+            System.out.println(pe);
+        }
+
+        return (JSONObject) obj;
     }
 }

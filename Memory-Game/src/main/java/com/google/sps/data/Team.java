@@ -32,9 +32,17 @@ public class Team implements Chat{
 		return teamName;
 	}
 
-	public ArrayList<TeamMember> getTeamMenbers(){
+	public ArrayList<TeamMember> getTeamMembers(){
 		return teamMembers;
 	}
+
+    public ArrayList<String> getAllTeamMemberNicknames(){
+        ArrayList<String> allNicknames = new ArrayList<>();
+        for(TeamMember teamMember: teamMembers){
+            allNicknames.add(teamMember.getNickname());
+        }
+        return allNicknames;
+    }
 
 	public int getSize(){
 		return teamMembers.size();

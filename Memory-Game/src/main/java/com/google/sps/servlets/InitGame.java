@@ -1,6 +1,6 @@
 package com.google.sps.servlets;
 
-import java.io.IOException;
+import java.io.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import org.json.simple.*;
@@ -14,21 +14,27 @@ import static com.google.sps.util.Util.*;
 
 import com.google.appengine.api.users.*;
 
-@WebServlet("join-room")
-public class JoinRoom extends HttpServlet{
+@WebServlet("init-game")
+public class InitGame extends HttpServlet{
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
 
         JSONObject obj = getJsonObjectFromRequest(request);
         long inviteCode = (long) obj.get("inviteCode");
-        String nickName = (String) obj.get("nickName");
-
-        User user = UserServiceFactory.getUserService().getCurrentUser();
 
         Game game = ofy().load().type(Game.class).id(inviteCode).now();
-        game.addUser(user, nickName);
-        ofy().save().entity(game).now();
+
+        obj = new JSONObject();
+        obj.put("board", game.getBoard());
+        obj.put("redTeam", game.getRedTeam().getAllTeamMemberNicknames());
+        obj.put("blueTeam", game.getBlueTeam().getAllTeamMemberNicknames());
+
+        StringWriter out = new StringWriter();
+        obj.writeJSONString(out);
+
+        response.setContentType("application/json");
+        response.getWriter().println(out.toString());
     }
 
 }
