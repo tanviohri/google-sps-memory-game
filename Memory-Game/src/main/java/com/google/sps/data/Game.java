@@ -92,10 +92,20 @@ public class Game implements Chat{
 		}
 	}
 
-	public ArrayList<Message> getAllMessage(){
+    @Override
+	public ArrayList<Message> getAllMessages(){
 		return messages;
 	}
 
+    public ArrayList<Message> getAllTeamMessages(TeamMember teamMember){
+        if(teamMember.getTeamName() == "Red"){
+            return red.getAllMessages();
+        }else{
+            return blue.getAllMessages();
+        }
+    }
+
+    @Override
 	public void addMessage(Message message){
 		messages.add(message);
 	}

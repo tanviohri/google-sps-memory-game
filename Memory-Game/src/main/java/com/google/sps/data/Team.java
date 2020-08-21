@@ -48,10 +48,12 @@ public class Team implements Chat{
 		return teamMembers.size();
 	}
 
-	public ArrayList<Message> getAllMessage(){
+    @Override
+	public ArrayList<Message> getAllMessages(){
 		return messages;
 	}
 
+    @Override
 	public void addMessage(Message message){
 		messages.add(message);
 	}
