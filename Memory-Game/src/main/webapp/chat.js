@@ -1,22 +1,21 @@
 window.customElements.define('speech-bubble', class extends HTMLElement {'p'});
 
-async function getMessagesForTeamChat() {
-    //const response = await fetch('/data'); --to implement
-    //const messages = await response.json(); --to implement
-    container=document.getElementById('team-chat-container');
-    messages.map(function(currMessage){
-        container.appendChild(
+async function getMessages() {
+    const response = await fetch('/polling-chat'); 
+    const jsonObj = await response.json();
+
+    teamMessages = jsonObj["teamChat"];
+    teamContainer=document.getElementById('team-chat-container');
+    teamMessages.map(function(currMessage){
+        teamContainer.appendChild(
             createElement(currMessage)
         );
     });
-}
 
-async function getMessagesForRoomChat() {
-    //const response = await fetch('/data'); --to implement
-    //const messages = await response.json(); --to implement
-    container=document.getElementById('room-chat-container');
-    messages.map(function(currMessage){
-        container.appendChild(
+    roomMessages = jsonObj["groupChat"];
+    roomContainer=document.getElementById('room-chat-container');
+    roomMessages.map(function(currMessage){
+        roomContainer.appendChild(
             createElement(currMessage)
         );
     });
@@ -36,3 +35,5 @@ function openForm(chatType) {
 function closeForm(chatType) {
     document.getElementById(chatType + "Chat").style.display = "none";
 }
+
+var myVar = setInterval(getMessages, 1000);
