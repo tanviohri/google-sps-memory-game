@@ -8,6 +8,7 @@ import org.json.simple.*;
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
 import com.google.sps.data.Game;
+import static com.google.sps.util.Util.*;
 
 @WebServlet("end-game")
 public class EndGame extends HttpServlet{

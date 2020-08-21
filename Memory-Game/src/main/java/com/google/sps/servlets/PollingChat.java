@@ -8,13 +8,13 @@ import org.json.simple.parser.*;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
-import com.google.sps.data.Game;
+import com.google.sps.data.*;
 import static com.google.sps.util.Util.*;
 
 import com.google.appengine.api.users.*;
 
-@WebServlet("init-game")
-public class InitGame extends HttpServlet{
+@WebServlet("polling-chat")
+public class PollingChat extends HttpServlet{
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
@@ -23,11 +23,12 @@ public class InitGame extends HttpServlet{
         long inviteCode = (long) obj.get("inviteCode");
 
         Game game = ofy().load().type(Game.class).id(inviteCode).now();
+        User user = UserServiceFactory.getUserService().getCurrentUser();
+        TeamMember teamMember = game.getTeamMemberFromUser(user);
 
         obj = new JSONObject();
-        obj.put("board", game.getBoard());
-        obj.put("redTeam", game.getRedTeam().getAllTeamMemberNicknames());
-        obj.put("blueTeam", game.getBlueTeam().getAllTeamMemberNicknames());
+        obj.put("teamChat", game.getAllTeamMessages(teamMember));
+        obj.put("groupChat", game.getAllMessages());
 
         StringWriter out = new StringWriter();
         obj.writeJSONString(out);
