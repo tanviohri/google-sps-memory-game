@@ -4,4 +4,5 @@ async function getCode() {
     });
     const game = await response.json();
     document.getElementById("code").innerHTML = game["inviteCode"];
+    console.log(game);
 }

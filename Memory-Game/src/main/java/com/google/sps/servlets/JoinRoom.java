@@ -14,7 +14,7 @@ import static com.google.sps.util.Util.*;
 
 import com.google.appengine.api.users.*;
 
-@WebServlet("join-room")
+@WebServlet("/join-room")
 public class JoinRoom extends HttpServlet{
 
     @Override

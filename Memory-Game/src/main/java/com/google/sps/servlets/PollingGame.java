@@ -13,7 +13,7 @@ import static com.google.sps.util.Util.*;
 
 import com.google.appengine.api.users.*;
 
-@WebServlet("polling-game")
+@WebServlet("/polling-game")
 public class PollingGame extends HttpServlet{
 
     @Override

@@ -55,7 +55,7 @@ public class Game implements Chat{
 
 	}
 
-    public long getId(){
+    public Long getId(){
         return id;
     }
 

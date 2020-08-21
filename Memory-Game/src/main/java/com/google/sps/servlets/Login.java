@@ -10,7 +10,7 @@ import com.google.appengine.api.users.UserServiceFactory;
 import java.io.PrintWriter;
 
 
-@WebServlet("login")
+@WebServlet("/login")
 public class Login extends HttpServlet{
 
     @Override

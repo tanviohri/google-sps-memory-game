@@ -13,7 +13,7 @@ import static com.google.sps.util.Util.*;
 
 import com.google.appengine.api.users.*;
 
-@WebServlet("polling-chat")
+@WebServlet("/polling-chat")
 public class PollingChat extends HttpServlet{
 
     @Override

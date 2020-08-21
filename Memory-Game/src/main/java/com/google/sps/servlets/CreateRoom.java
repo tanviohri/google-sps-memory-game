@@ -9,7 +9,7 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
 
 import com.google.sps.data.Game;
 
-@WebServlet("create-room")
+@WebServlet("/create-room")
 public class CreateRoom extends HttpServlet{
 
     @Override
@@ -19,8 +19,11 @@ public class CreateRoom extends HttpServlet{
 
         ofy().save().entity(game).now();
 
+        assert game.getId() != null;
+
         JSONObject obj = new JSONObject();
         obj.put("inviteCode", game.getId());
+        obj.put("random", new Integer(123));
 
         StringWriter out = new StringWriter();
         obj.writeJSONString(out);

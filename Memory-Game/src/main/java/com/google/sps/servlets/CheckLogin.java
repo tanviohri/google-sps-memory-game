@@ -8,7 +8,7 @@ import com.google.gson.Gson;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
-@WebServlet("check-login")
+@WebServlet("/check-login")
 public class CheckLogin extends HttpServlet{
 
     @Override

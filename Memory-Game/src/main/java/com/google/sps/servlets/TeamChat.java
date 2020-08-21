@@ -13,7 +13,7 @@ import static com.google.sps.util.Util.*;
 
 import com.google.appengine.api.users.*;
 
-@WebServlet("team-chat")
+@WebServlet("/team-chat")
 public class TeamChat extends HttpServlet{
 
     @Override

@@ -13,7 +13,7 @@ import static com.google.sps.util.Util.*;
 
 import com.google.appengine.api.users.*;
 
-@WebServlet("flip-tile")
+@WebServlet("/flip-tile")
 public class FlipTile extends HttpServlet{
 
     @Override
