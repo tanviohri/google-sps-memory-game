@@ -13,8 +13,8 @@ public class Game implements Chat{
 	private final int n = 5;
 	private final int m = 6;
 
-	private int[][] board = new int[n][m];
-	private boolean[][] currentBoard = new boolean[n][m];
+	private int[][] board = new int[n+1][m+1];
+	private boolean[][] currentBoard = new boolean[n+1][m+1];
 
 	private Team red;
 	private Team blue;

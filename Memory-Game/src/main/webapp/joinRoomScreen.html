@@ -6,15 +6,17 @@
     <link rel="stylesheet" href="style.css">
   </head>
 
-  <body class="body">
+  <body class="body" onload="getCode()">
     <header class="masthead">
         <div class="container">
             <h1 class="title">Welcome to the ultimate memory challenge!</h1>
+            Share this invitation code with your friends: <p id="code"></p>
             <p>Before entering the room set your nickname.</p>
             <!-- Replace this with a POST form -->
             <a href=# class="buttons">Your nickname</a>
             <!-- Link this to the game room screen -->
-            <a href="#" class="buttons">Enter room</a>
+            <a href="#" class="buttons">Enter room</a>            
+            <script src="./createRoom.js"></script>
         </div>
     </header>
   </body>
