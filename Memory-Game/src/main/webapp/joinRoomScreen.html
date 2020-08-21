@@ -10,12 +10,12 @@
     <header class="masthead">
         <div class="container">
             <h1 class="title">Welcome to the ultimate memory challenge!</h1>
-            Share this invitation code with your friends: <p id="code"></p>
+            Use this invitation code below and share it with your friends: <p id="code"></p>
             <p>Before entering the room set your nickname.</p>
-            <!-- Replace this with a POST form -->
-            <a href=# class="buttons">Your nickname</a>
-            <!-- Link this to the game room screen -->
-            <a href="#" class="buttons">Enter room</a>            
+            <form action="/join-room" method="POST">
+                <textarea placeholder="Enter code" name="inviteCode" required></textarea><br>
+                <textarea placeholder="Enter nickname" name="nickName" required></textarea><br>
+            <input type="submit" onclick="gameScreen.html" value="Enter Room" class="buttons"/>   
             <script src="./createRoom.js"></script>
         </div>
     </header>

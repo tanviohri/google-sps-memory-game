@@ -15,27 +15,19 @@
 let objects = ['flag', 'glass', 'star', 'coffee', 'circle', 'cloud', 'bug', 'bicycle', 'leaf',
     'cube', 'anchor', 'paper-plane-o', 'bolt', 'bomb', 'diamond'],
 
-    $deck = $('.deck'),
+    $deck = $('.deck');
 
-    n = 5; //will come from datastore, initialized here for testing purpose only
-    m = 6; //will come from datastore, initialized here for testing purpose only
-
-function init() {
-
-    /*let board = new Array(n + 1); //will come from datastore, initialized here for testing purpose only
-    for (let i = 1; i <= n; i++) {
-        board[i] = new Array(m + 1);
-    }
-    for (let i = 1; i <= n; i++) {
-        for (let j = 1; j <= m; j++) {
-            board[i][j] = Math.floor(((i - 1) * m + j - 1) / 2);
-        }
-    }*/
+async function init() {
     const response = await fetch('/init-game', {
         method: 'POST'
     });
     const game = await response.json();
+
     let board=game["board"];
+
+    n=board.length();
+    m=board[0].length();
+
     $deck.empty();
 
     //matchRed = 0;
