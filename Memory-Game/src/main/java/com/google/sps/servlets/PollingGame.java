@@ -13,8 +13,8 @@ import static com.google.sps.util.Util.*;
 
 import com.google.appengine.api.users.*;
 
-@WebServlet("init-game")
-public class InitGame extends HttpServlet{
+@WebServlet("polling-game")
+public class PollingGame extends HttpServlet{
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
@@ -25,9 +25,9 @@ public class InitGame extends HttpServlet{
         Game game = ofy().load().type(Game.class).id(inviteCode).now();
 
         obj = new JSONObject();
-        obj.put("board", game.getBoard());
-        obj.put("redTeam", game.getRedTeam().getAllTeamMemberNicknames());
-        obj.put("blueTeam", game.getBlueTeam().getAllTeamMemberNicknames());
+        obj.put("currentBoard", game.getCurrentBoard());
+        obj.put("redTeamScore", game.getRedTeam().getScore());
+        obj.put("blueTeamScore", game.getBlueTeam().getScore());
 
         StringWriter out = new StringWriter();
         obj.writeJSONString(out);

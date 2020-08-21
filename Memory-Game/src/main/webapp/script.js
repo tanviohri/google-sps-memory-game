@@ -22,7 +22,7 @@ let objects = ['flag', 'glass', 'star', 'coffee', 'circle', 'cloud', 'bug', 'bic
 
 function init() {
 
-    let board = new Array(n + 1); //will come from datastore, initialized here for testing purpose only
+    /*let board = new Array(n + 1); //will come from datastore, initialized here for testing purpose only
     for (let i = 1; i <= n; i++) {
         board[i] = new Array(m + 1);
     }
@@ -30,7 +30,12 @@ function init() {
         for (let j = 1; j <= m; j++) {
             board[i][j] = Math.floor(((i - 1) * m + j - 1) / 2);
         }
-    }
+    }*/
+    const response = await fetch('/init-game', {
+        method: 'POST'
+    });
+    const game = await response.json();
+    let board=game["board"];
     $deck.empty();
 
     //matchRed = 0;

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 html {
     box-sizing: border-box;
 }
@@ -205,4 +206,20 @@ h1 {
 /* Add some hover effects to buttons */
 .chat-form-container .btn:hover, .open-button:hover {
   opacity: 1;
+=======
+.container{
+    margin-top:14em;
+}
+.body{
+    text-align: center;
+    background-color: black;
+    color: lightskyblue;
+    font-style: italic;
+}
+.buttons{
+    background-color: lightskyblue;
+    width: 10%;
+    height: 2em;
+    padding:1em;
+>>>>>>> e2a650f4ab46c63b89f5bdeb0f8b2d5d27962a35
 }
