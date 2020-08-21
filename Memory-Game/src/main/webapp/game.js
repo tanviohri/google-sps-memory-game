@@ -1,41 +1,19 @@
-// Copyright 2019 Google LLC
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     https://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 let objects = ['flag', 'glass', 'star', 'coffee', 'circle', 'cloud', 'bug', 'bicycle', 'leaf',
     'cube', 'anchor', 'paper-plane-o', 'bolt', 'bomb', 'diamond'],
 
-    $deck = $('.deck'),
+    $deck = $('.deck');
 
-    n = 5; //will come from datastore, initialized here for testing purpose only
-    m = 6; //will come from datastore, initialized here for testing purpose only
-
-function init() {
-
-    /*let board = new Array(n + 1); //will come from datastore, initialized here for testing purpose only
-    for (let i = 1; i <= n; i++) {
-        board[i] = new Array(m + 1);
-    }
-    for (let i = 1; i <= n; i++) {
-        for (let j = 1; j <= m; j++) {
-            board[i][j] = Math.floor(((i - 1) * m + j - 1) / 2);
-        }
-    }*/
+async function init() {
     const response = await fetch('/init-game', {
         method: 'POST'
     });
     const game = await response.json();
+
     let board=game["board"];
+
+    n=board.length();
+    m=board[0].length();
+
     $deck.empty();
 
     //matchRed = 0;
