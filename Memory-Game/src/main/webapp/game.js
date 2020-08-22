@@ -1,16 +1,22 @@
 let objects = ['flag', 'glass', 'star', 'coffee', 'circle', 'cloud', 'bug', 'bicycle', 'leaf',
     'cube', 'anchor', 'paper-plane-o', 'bolt', 'bomb', 'diamond'],
     
-    inviteCode = "*";
-    nickName = "*";
-    $deck = $('.deck');
+inviteCode = "*";
+nickName = "*";
+$deck = $('.deck');
 
-async function init() {
+async function init(valOfInviteCode, valOfNickName) {
+    console.log(inviteCode);
+    window.location = "gameScreen.html";
+    inviteCode = valOfInviteCode;
+    nickName =  valOfNickName;
+    console.log(inviteCode);
     var obj = {"inviteCode": inviteCode};
     const response = await fetch('/init-game', {
         method: 'POST',
         body: JSON.stringify(obj)
     });
+    //console.log(await response.text());
     const game = await response.json();
 
     let board=game["board"];
@@ -57,6 +63,6 @@ function storeInfo() {
     request.open("POST", "/join-room", true);
     request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     request.send(JSON.stringify(obj));   
-    window.location = "gameScreen.html"; 
+    init(inviteCode, nickName); 
 }
 

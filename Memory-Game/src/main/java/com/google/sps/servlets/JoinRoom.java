@@ -21,7 +21,7 @@ public class JoinRoom extends HttpServlet{
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
 
         JSONObject obj = getJsonObjectFromRequest(request);
-        long inviteCode = (long) obj.get("inviteCode");
+        long inviteCode = Long.parseLong((String) obj.get("inviteCode"));
         String nickName = (String) obj.get("nickName");
 
         User user = UserServiceFactory.getUserService().getCurrentUser();
