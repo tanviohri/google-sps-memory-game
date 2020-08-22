@@ -20,7 +20,7 @@ public class InitGame extends HttpServlet{
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
 
         JSONObject obj = getJsonObjectFromRequest(request);
-        long inviteCode = Long.parseLong((String) obj.get("inviteCode"));
+        long inviteCode = (long) obj.get("inviteCode");
 
         Game game = ofy().load().type(Game.class).id(inviteCode).now();
 
