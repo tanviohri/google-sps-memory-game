@@ -22,6 +22,9 @@ public class InitGame extends HttpServlet{
         JSONObject obj = getJsonObjectFromRequest(request);
         long inviteCode = Long.parseLong((String) obj.get("inviteCode"));
 
+        System.out.println(obj);
+        System.out.println(inviteCode);
+
         Game game = ofy().load().type(Game.class).id(inviteCode).now();
 
         obj = new JSONObject();
