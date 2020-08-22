@@ -1,11 +1,15 @@
 let objects = ['flag', 'glass', 'star', 'coffee', 'circle', 'cloud', 'bug', 'bicycle', 'leaf',
     'cube', 'anchor', 'paper-plane-o', 'bolt', 'bomb', 'diamond'],
-
+    
+    inviteCode = "*";
+    nickName = "*";
     $deck = $('.deck');
 
 async function init() {
+    var obj = {"inviteCode": inviteCode};
     const response = await fetch('/init-game', {
-        method: 'POST'
+        method: 'POST',
+        body: JSON.stringify(obj)
     });
     const game = await response.json();
 
@@ -44,5 +48,15 @@ function flipCard(row, col) {
     if(card.hasClass('open')) {card.removeClass('open');}
     else card.addClass('open');
 }
-init();
+
+function storeInfo() {
+    inviteCode = document.getElementById("infoForm").elements["inviteCode"].value;
+    nickName = document.getElementById("infoForm").elements["nickName"].value;
+    var obj = {"inviteCode": inviteCode, "nickName": nickName};
+    var request = new XMLHttpRequest();
+    request.open("POST", "/join-room", true);
+    request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    request.send(JSON.stringify(obj));   
+    window.location = "gameScreen.html"; 
+}
 

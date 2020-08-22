@@ -36,4 +36,4 @@ function closeForm(chatType) {
     document.getElementById(chatType + "Chat").style.display = "none";
 }
 
-var myVar = setInterval(getMessages, 1000);
+//var myVar = setInterval(getMessages, 1000);

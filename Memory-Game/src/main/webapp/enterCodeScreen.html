@@ -11,10 +11,11 @@
         <div class="container">
             <h1 class="title">Welcome to the ultimate memory challenge!</h1>
             <p>Before entering the room set your nickname.</p>
-            <form action="/join-room" method="POST">
+            <form action="javascript:storeInfo();" id="infoForm">
                 <textarea placeholder="Enter code" name="inviteCode" required></textarea><br>
                 <textarea placeholder="Enter nickname" name="nickName" required></textarea><br>
-            <input type="submit" onclick="gameScreen.html" value="Enter room" class="buttons"/>  
+                <input type="submit" value="Enter Room" class="buttons"/> 
+            </form>
         </div>
     </header>
   </body>
