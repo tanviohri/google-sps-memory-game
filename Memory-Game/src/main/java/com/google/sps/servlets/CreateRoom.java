@@ -9,6 +9,9 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
 
 import com.google.sps.data.Game;
 
+import com.google.gson.Gson;
+
+
 @WebServlet("/create-room")
 public class CreateRoom extends HttpServlet{
 
@@ -23,12 +26,12 @@ public class CreateRoom extends HttpServlet{
 
         JSONObject obj = new JSONObject();
         obj.put("inviteCode", game.getId());
-        obj.put("random", new Integer(123));
 
         StringWriter out = new StringWriter();
         obj.writeJSONString(out);
 
         response.setContentType("application/json");
         response.getWriter().println(out.toString());
+
     }
 }

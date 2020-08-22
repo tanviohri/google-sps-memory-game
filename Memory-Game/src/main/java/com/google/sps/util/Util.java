@@ -44,6 +44,7 @@ public class Util{
 
     public static JSONObject getJsonObjectFromRequest(HttpServletRequest request) throws IOException{
         String data = getBodyFromRequest(request);
+        System.out.println(data);
         JSONParser parser = new JSONParser();
         Object obj = null;
 

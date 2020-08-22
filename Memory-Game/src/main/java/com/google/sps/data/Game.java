@@ -86,11 +86,11 @@ public class Game implements Chat{
 		if(red.getSize() > blue.getSize()){
 			TeamMember teamMember = new TeamMember(user, nickName, "Blue");
 			blue.addTeamMember(teamMember);
-			// userToTeamMember.put(user, teamMember);
+			userToTeamMember.put(user, teamMember);
 		}else{
 			TeamMember teamMember = new TeamMember(user, nickName, "Red");
 			red.addTeamMember(teamMember);
-			// userToTeamMember.put(user, teamMember);
+			userToTeamMember.put(user, teamMember);
 		}
 	}
 
