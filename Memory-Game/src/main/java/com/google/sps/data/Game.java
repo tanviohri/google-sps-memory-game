@@ -13,13 +13,13 @@ public class Game implements Chat{
 	private final int n = 5;
 	private final int m = 6;
 
-	private int[][] board = new int[n+1][m+1];
-	private boolean[][] currentBoard = new boolean[n+1][m+1];
+	@Serialize private int[][] board;
+	@Serialize private boolean[][] currentBoard;
 
 	private Team red;
 	private Team blue;
 
-	private HashMap<User, TeamMember> userToTeamMember;
+	@Serialize private HashMap<User, TeamMember> userToTeamMember;
 
 	private ArrayList< Pair <Integer, Integer> > moves;
 
@@ -39,6 +39,8 @@ public class Game implements Chat{
 		}
 		Collections.shuffle(arr);
 
+        board = new int[n + 1][m + 1];
+        currentBoard = new boolean[n + 1][m + 1];
 		for(int i = 1; i <= n; i++){
 			for(int j = 1; j <= m; j++){
 				board[i][j] = arr.get(j - 1 + (i - 1) * m);
@@ -84,11 +86,11 @@ public class Game implements Chat{
 		if(red.getSize() > blue.getSize()){
 			TeamMember teamMember = new TeamMember(user, nickName, "Blue");
 			blue.addTeamMember(teamMember);
-			userToTeamMember.put(user, teamMember);
+			// userToTeamMember.put(user, teamMember);
 		}else{
 			TeamMember teamMember = new TeamMember(user, nickName, "Red");
 			red.addTeamMember(teamMember);
-			userToTeamMember.put(user, teamMember);
+			// userToTeamMember.put(user, teamMember);
 		}
 	}
 
