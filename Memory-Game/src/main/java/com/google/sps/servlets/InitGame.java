@@ -36,8 +36,8 @@ public class InitGame extends HttpServlet{
 
         obj = new JSONObject();
         obj.put("board", gson.toJson(game.getBoard()));
-        obj.put("redTeam", game.getRedTeam().getAllTeamMemberNicknames());
-        obj.put("blueTeam", game.getBlueTeam().getAllTeamMemberNicknames());
+        //obj.put("redTeam", game.getRedTeam().getAllTeamMemberNicknames());
+        //obj.put("blueTeam", game.getBlueTeam().getAllTeamMemberNicknames());
         obj.put("yourTeam", teamMember.getTeamName());
         obj.put("chance", game.getChanceAsString());
 

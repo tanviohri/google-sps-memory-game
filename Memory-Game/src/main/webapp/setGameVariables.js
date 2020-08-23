@@ -21,8 +21,8 @@ async function storeInfo() {
     console.log(game);
 
     sessionStorage.setItem("board", game["board"]);
-    sessionStorage.setItem("redTeam", game["redTeam"]);
-    sessionStorage.setItem("blueTeam", game["blueTeam"]);
+    //sessionStorage.setItem("redTeam", game["redTeam"]);
+    //sessionStorage.setItem("blueTeam", game["blueTeam"]);
     sessionStorage.setItem("yourTeam", game["yourTeam"]);
     sessionStorage.setItem("chance", game["chance"]);
 
