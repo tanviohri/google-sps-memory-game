@@ -1,27 +1,12 @@
-if (window.location.href.indexOf("gameScreen.html") != -1)
-{
-    throw new Error('This is not an error. This is just to abort javascript');   
-}
-
-let board = [],
-inviteCode = "*",
-nickName = "*";
-
-export function getBoard()
-{
-    console.log(board);
-    return board;
-}
-
 async function storeInfo() {
-    inviteCode = document.getElementById("infoForm").elements["inviteCode"].value;
-    nickName = document.getElementById("infoForm").elements["nickName"].value;
-    var obj = {"inviteCode": inviteCode, "nickName": nickName};
+    sessionStorage.setItem("inviteCode", document.getElementById("infoForm").elements["inviteCode"].value);
+    sessionStorage.setItem("nickName", document.getElementById("infoForm").elements["nickName"].value);
+    var obj = {"inviteCode": sessionStorage.getItem("inviteCode"), "nickName": sessionStorage.getItem("nickName")};
     var response = await fetch('/join-room', {
         method: 'POST',
         body: JSON.stringify(obj)
     });
-    obj = {"inviteCode": inviteCode};
+    obj = {"inviteCode": sessionStorage.getItem("inviteCode")};
     response = await fetch('/init-game', {
         method: 'POST',
         body: JSON.stringify(obj)
@@ -29,17 +14,7 @@ async function storeInfo() {
     const game = await response.json();
     console.log(game);
 
-    board=JSON.parse(game["board"]);
-    /*
-    console.log(board);
-    let n=board.length;
-    let m=board[0].length;
-    
-    for (let i = 0; i < n; i++) {
-        for (let j = 0; j < m; j++) {
-            console.log(board[i][j]);    
-        }
-    }    */
+    sessionStorage.setItem("board", game["board"]);
     window.location = "gameScreen.html"; 
 }
 

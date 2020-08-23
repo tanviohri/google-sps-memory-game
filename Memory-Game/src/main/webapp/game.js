@@ -1,5 +1,3 @@
-import { getBoard } from './setGameVariables.js';
-
 let objects = ['flag', 'glass', 'star', 'coffee', 'circle', 'cloud', 'bug', 'bicycle', 'leaf',
     'cube', 'anchor', 'paper-plane-o', 'bolt', 'bomb', 'diamond'];
     
@@ -8,7 +6,7 @@ nickName = "*",
 $deck = $('.deck');
 
 function init() {
-    let board = getBoard();
+    let board = JSON.parse(sessionStorage.getItem("board"));
     console.log(board);
     $deck.empty();
     let n=board.length;
