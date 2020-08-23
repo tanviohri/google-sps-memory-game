@@ -24,8 +24,8 @@ public class GroupChat extends HttpServlet{
         String text = (String) obj.get("message");
 
         Game game = ofy().load().type(Game.class).id(inviteCode).now();
-        User user = UserServiceFactory.getUserService().getCurrentUser();
-        TeamMember teamMember = game.getTeamMemberFromUser(user);
+        String email = UserServiceFactory.getUserService().getCurrentUser().getEmail();
+        TeamMember teamMember = game.getTeamMemberFromUser(email);
 
         game.addMessage(new Message(teamMember, System.currentTimeMillis(), text));
         ofy().save().entity(game).now();

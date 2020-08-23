@@ -19,7 +19,7 @@ public class Game implements Chat{
 	private Team red;
 	private Team blue;
 
-	private ArrayList<Pair<User, TeamMember>> userToTeamMember;
+	private ArrayList< TeamMember > userToTeamMember;
 
 	private ArrayList< Pair <Integer, Integer> > moves;
 
@@ -39,11 +39,11 @@ public class Game implements Chat{
 		}
 		Collections.shuffle(arr);
 
-        board = new int[n + 1][m + 1];
-        currentBoard = new boolean[n + 1][m + 1];
-		for(int i = 1; i <= n; i++){
-			for(int j = 1; j <= m; j++){
-				board[i][j] = arr.get(j - 1 + (i - 1) * m);
+        board = new int[n][m];
+        currentBoard = new boolean[n][m];
+		for(int i = 0; i < n; i++){
+			for(int j = 0; j < m; j++){
+				board[i][j] = arr.get(j + i * m);
 				currentBoard[i][j] = false;
 			}
 		}
@@ -77,23 +77,23 @@ public class Game implements Chat{
         return blue;
     }
 
-    public TeamMember getTeamMemberFromUser(User user){
-        for(Pair <User, TeamMember> p : userToTeamMember){
-            if(p.getKey().equals(user)) return p.getValue();
+    public TeamMember getTeamMemberFromUser(String email){
+        for(TeamMember teamMember: userToTeamMember){
+            if(teamMember.getEmail().equals(email)) return teamMember;
         }
         return null;
     }
 
 	// Adding the new user to the team with less number of participants
-	public void addUser(User user, String nickName){
+	public void addUser(String email, String nickName){
 		if(red.getSize() > blue.getSize()){
-			TeamMember teamMember = new TeamMember(user, nickName, "Blue");
+			TeamMember teamMember = new TeamMember(email, nickName, "Blue");
 			blue.addTeamMember(teamMember);
-			userToTeamMember.add(new Pair(user, teamMember));
+			userToTeamMember.add(teamMember);
 		}else{
-			TeamMember teamMember = new TeamMember(user, nickName, "Red");
+			TeamMember teamMember = new TeamMember(email, nickName, "Red");
 			red.addTeamMember(teamMember);
-			userToTeamMember.add(new Pair(user, teamMember));
+			userToTeamMember.add(teamMember);
 		}
 	}
 

@@ -2,8 +2,14 @@ package com.google.sps.util;
 
 public class Pair<U, V>
 {
-	public final U first; 
-    public final V second;
+	public U first; 
+    public V second;
+
+    //  For Objectify
+    public Pair(){
+        first = null;
+        second = null;
+    }
 
 	public Pair(U first, V second){
 		this.first = first;

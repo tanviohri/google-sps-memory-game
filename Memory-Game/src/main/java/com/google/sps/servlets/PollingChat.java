@@ -23,8 +23,8 @@ public class PollingChat extends HttpServlet{
         long inviteCode = (long) obj.get("inviteCode");
 
         Game game = ofy().load().type(Game.class).id(inviteCode).now();
-        User user = UserServiceFactory.getUserService().getCurrentUser();
-        TeamMember teamMember = game.getTeamMemberFromUser(user);
+        String email = UserServiceFactory.getUserService().getCurrentUser().getEmail();
+        TeamMember teamMember = game.getTeamMemberFromUser(email);
 
         obj = new JSONObject();
         obj.put("teamChat", game.getAllTeamMessages(teamMember));

@@ -5,6 +5,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import org.json.simple.*;
 import org.json.simple.parser.*;
+import java.util.*; 
+import com.google.gson.Gson;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
@@ -27,8 +29,10 @@ public class InitGame extends HttpServlet{
         Game game = ofy().load().type(Game.class).id(inviteCode).now();
         System.out.println(game);
 
+        Gson gson = new Gson();
+
         obj = new JSONObject();
-        obj.put("board", game.getBoard());
+        obj.put("board", gson.toJson(game.getBoard()));
         obj.put("redTeam", game.getRedTeam().getAllTeamMemberNicknames());
         obj.put("blueTeam", game.getBlueTeam().getAllTeamMemberNicknames());
 

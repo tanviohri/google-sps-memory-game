@@ -16,8 +16,8 @@ async function init(valOfInviteCode, valOfNickName) {
         method: 'POST',
         body: JSON.stringify(obj)
     });
-    //console.log(await response.text());
     const game = await response.json();
+    console.log(game);
 
     let board=game["board"];
 
@@ -55,14 +55,18 @@ function flipCard(row, col) {
     else card.addClass('open');
 }
 
-function storeInfo() {
+async function storeInfo() {
     inviteCode = document.getElementById("infoForm").elements["inviteCode"].value;
     nickName = document.getElementById("infoForm").elements["nickName"].value;
     var obj = {"inviteCode": inviteCode, "nickName": nickName};
-    var request = new XMLHttpRequest();
-    request.open("POST", "/join-room", true);
-    request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-    request.send(JSON.stringify(obj));   
+    // var request = new XMLHttpRequest();
+    // request.open("POST", "/join-room", true);
+    // request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    // request.send(JSON.stringify(obj));
+    const response = await fetch('/join-room', {
+        method: 'POST',
+        body: JSON.stringify(obj)
+    });
     init(inviteCode, nickName); 
 }
 

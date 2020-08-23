@@ -28,11 +28,11 @@ public class JoinRoom extends HttpServlet{
 
         System.out.println(obj);
 
-        User user = UserServiceFactory.getUserService().getCurrentUser();
+        String email = UserServiceFactory.getUserService().getCurrentUser().getEmail();
         assert(UserServiceFactory.getUserService().isUserLoggedIn());
 
         Game game = ofy().load().type(Game.class).id(inviteCode).now();
-        game.addUser(user, nickName);
+        game.addUser(email, nickName);
         System.out.println(game);
         ofy().save().entity(game).now();
         System.out.println("data saved");

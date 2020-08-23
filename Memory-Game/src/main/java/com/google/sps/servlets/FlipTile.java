@@ -25,8 +25,8 @@ public class FlipTile extends HttpServlet{
         int col = (int) obj.get("col");
 
         Game game = ofy().load().type(Game.class).id(inviteCode).now();
-        User user = UserServiceFactory.getUserService().getCurrentUser();
-        TeamMember teamMember = game.getTeamMemberFromUser(user);
+        String email = UserServiceFactory.getUserService().getCurrentUser().getEmail();
+        TeamMember teamMember = game.getTeamMemberFromUser(email);
 
         if((game.getNumberOfMoves() < 2) && ((game.getChance() == Chance.RED && teamMember.getTeamName().equals("Red") && game.getRedTeam().isAdmin(teamMember)) || (game.getChance() == Chance.BLUE && teamMember.getTeamName().equals("Blue") && game.getBlueTeam().isAdmin(teamMember)))){
             game.move(row, col);

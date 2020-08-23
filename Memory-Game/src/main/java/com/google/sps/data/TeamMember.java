@@ -4,25 +4,25 @@ import com.google.appengine.api.users.*;
 
 public class TeamMember{
 
-	private final User user;
-	private final String nickname;
-	private final String teamName;
+	private String email;
+	private String nickname;
+	private String teamName;
 
     //necessary for objectify
     public TeamMember(){
-        user = null;
+        email = "";
         nickname = "";
         teamName = "";
     }
 
-	public TeamMember(User user, String nickname, String teamName){
-		this.user = user;
+	public TeamMember(String email, String nickname, String teamName){
+		this.email = email;
 		this.nickname = nickname;
 		this.teamName = teamName;
 	}
 
-	public User getUser(){
-		return user;
+	public String getEmail(){
+		return email;
 	}
 
 	public String getNickname(){
@@ -52,7 +52,7 @@ public class TeamMember{
 
 	@Override
 	public String toString(){
-		return "{User: " + user.toString() + ", Nickname: " + nickname + ", TeamName: " + teamName + "}";
+		return "{Email: " + email + ", Nickname: " + nickname + ", TeamName: " + teamName + "}";
 	}
 
 }
