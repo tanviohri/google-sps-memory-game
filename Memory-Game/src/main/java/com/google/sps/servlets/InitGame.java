@@ -23,9 +23,9 @@ public class InitGame extends HttpServlet{
         long inviteCode = Long.parseLong((String) obj.get("inviteCode"));
 
         System.out.println(obj);
-        System.out.println(inviteCode);
 
         Game game = ofy().load().type(Game.class).id(inviteCode).now();
+        System.out.println(game);
 
         obj = new JSONObject();
         obj.put("board", game.getBoard());
@@ -37,6 +37,7 @@ public class InitGame extends HttpServlet{
 
         response.setContentType("application/json");
         response.getWriter().println(out.toString());
+        System.out.println("data sent: " + out.toString());
     }
 
 }

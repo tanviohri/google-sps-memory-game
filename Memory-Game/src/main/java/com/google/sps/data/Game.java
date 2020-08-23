@@ -19,7 +19,7 @@ public class Game implements Chat{
 	private Team red;
 	private Team blue;
 
-	@Serialize private HashMap<User, TeamMember> userToTeamMember;
+	private ArrayList<Pair<User, TeamMember>> userToTeamMember;
 
 	private ArrayList< Pair <Integer, Integer> > moves;
 
@@ -50,7 +50,7 @@ public class Game implements Chat{
 
 		red = new Team("Red");
 		blue = new Team("Blue");
-		userToTeamMember = new HashMap<>();
+		userToTeamMember = new ArrayList<>();
 		moves = new ArrayList<>();
 		chance = Chance.RED;
 		messages = new ArrayList<>();
@@ -78,7 +78,10 @@ public class Game implements Chat{
     }
 
     public TeamMember getTeamMemberFromUser(User user){
-        return userToTeamMember.get(user);
+        for(Pair <User, TeamMember> p : userToTeamMember){
+            if(p.getKey().equals(user)) return p.getValue();
+        }
+        return null;
     }
 
 	// Adding the new user to the team with less number of participants
@@ -86,11 +89,11 @@ public class Game implements Chat{
 		if(red.getSize() > blue.getSize()){
 			TeamMember teamMember = new TeamMember(user, nickName, "Blue");
 			blue.addTeamMember(teamMember);
-			// userToTeamMember.put(user, teamMember);
+			userToTeamMember.add(new Pair(user, teamMember));
 		}else{
 			TeamMember teamMember = new TeamMember(user, nickName, "Red");
 			red.addTeamMember(teamMember);
-			// userToTeamMember.put(user, teamMember);
+			userToTeamMember.add(new Pair(user, teamMember));
 		}
 	}
 
@@ -203,7 +206,7 @@ public class Game implements Chat{
 
 	@Override
 	public String toString(){
-		return "{Board: " + board.toString() + ", CurrentBoard: " + currentBoard.toString() + ", Red: " + red.toString() + ", Blue: " + blue.toString() + ", UserToTeamMember: " + userToTeamMember.toString() + ", Moves: " + moves.toString() + ", Chance" + chance + ", Messages: " + messages.toString() + "}";
+		return "{Id: " + id + " Board: " + Arrays.deepToString(board) + ", CurrentBoard: " + Arrays.deepToString(currentBoard) + ", Red: " + red.toString() + ", Blue: " + blue.toString() + ", UserToTeamMember: " + userToTeamMember.toString() + ", Moves: " + moves.toString() + ", Chance" + chance + ", Messages: " + messages.toString() + "}";
 	}
 
 }

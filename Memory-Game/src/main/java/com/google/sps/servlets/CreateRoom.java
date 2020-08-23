@@ -23,7 +23,6 @@ public class CreateRoom extends HttpServlet{
 
         JSONObject obj = new JSONObject();
         obj.put("inviteCode", game.getId());
-        obj.put("random", new Integer(123));
 
         StringWriter out = new StringWriter();
         obj.writeJSONString(out);

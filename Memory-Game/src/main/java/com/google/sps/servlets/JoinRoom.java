@@ -13,6 +13,7 @@ import com.google.sps.data.Game;
 import static com.google.sps.util.Util.*;
 
 import com.google.appengine.api.users.*;
+import com.google.appengine.api.users.UserService;
 
 @WebServlet("/join-room")
 public class JoinRoom extends HttpServlet{
@@ -26,14 +27,14 @@ public class JoinRoom extends HttpServlet{
         String nickName = (String) obj.get("nickName");
 
         System.out.println(obj);
-        System.out.println(inviteCode);
-        System.out.println(nickName);
 
         User user = UserServiceFactory.getUserService().getCurrentUser();
+        assert(UserServiceFactory.getUserService().isUserLoggedIn());
 
         Game game = ofy().load().type(Game.class).id(inviteCode).now();
         game.addUser(user, nickName);
+        System.out.println(game);
         ofy().save().entity(game).now();
+        System.out.println("data saved");
     }
-
 }
