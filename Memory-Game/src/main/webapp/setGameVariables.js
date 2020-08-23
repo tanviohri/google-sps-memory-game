@@ -1,8 +1,8 @@
-/*if (window.location.href.indexOf("gameScreen.html") != -1)
+if (window.location.href.indexOf("gameScreen.html") != -1)
 {
-    exit();   
+    throw new Error('This is not an error. This is just to abort javascript');   
 }
-*/
+
 let board = [],
 inviteCode = "*",
 nickName = "*";
