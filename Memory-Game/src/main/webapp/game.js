@@ -7,7 +7,7 @@ var inviteCode = "*",
 nickName = "*",
 $deck = $('.deck');
 
-async function init() {
+function init() {
     let board = getBoard();
     console.log(board);
     $deck.empty();

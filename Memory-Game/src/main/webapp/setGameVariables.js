@@ -1,12 +1,15 @@
-//console.log('script reloaded');
-
-var board = [],
+/*if (window.location.href.indexOf("gameScreen.html") != -1)
+{
+    exit();   
+}
+*/
+let board = [],
 inviteCode = "*",
 nickName = "*";
 
 export function getBoard()
 {
-    //console.log(board);
+    console.log(board);
     return board;
 }
 
@@ -14,12 +17,12 @@ async function storeInfo() {
     inviteCode = document.getElementById("infoForm").elements["inviteCode"].value;
     nickName = document.getElementById("infoForm").elements["nickName"].value;
     var obj = {"inviteCode": inviteCode, "nickName": nickName};
-    const response = await fetch('/join-room', {
+    var response = await fetch('/join-room', {
         method: 'POST',
         body: JSON.stringify(obj)
     });
-    var obj = {"inviteCode": inviteCode};
-    const response = await fetch('/init-game', {
+    obj = {"inviteCode": inviteCode};
+    response = await fetch('/init-game', {
         method: 'POST',
         body: JSON.stringify(obj)
     });
