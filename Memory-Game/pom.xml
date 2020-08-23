@@ -60,7 +60,7 @@
         <version>2.2.0</version>
         <configuration>
           <!-- TODO: set project ID. -->
-          <deploy.projectId>aagarwal-sps-summer20</deploy.projectId>
+          <deploy.projectId>tohri1-sps-summer20</deploy.projectId>
           <deploy.version>1</deploy.version>
         </configuration>
       </plugin>

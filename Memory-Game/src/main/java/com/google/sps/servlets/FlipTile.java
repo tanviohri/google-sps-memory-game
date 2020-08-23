@@ -20,9 +20,16 @@ public class FlipTile extends HttpServlet{
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
 
         JSONObject obj = getJsonObjectFromRequest(request);
-        long inviteCode = (long) obj.get("inviteCode");
-        int row = (int) obj.get("row");
-        int col = (int) obj.get("col");
+
+        System.out.println(obj);
+        
+        long inviteCode = Long.parseLong((String)obj.get("inviteCode"));
+        int row = Integer.parseInt((String)obj.get("row"));
+        int col = Integer.parseInt((String)obj.get("col"));
+
+        System.out.println(inviteCode);
+        System.out.println(row);
+        System.out.println(col);
 
         Game game = ofy().load().type(Game.class).id(inviteCode).now();
         String email = UserServiceFactory.getUserService().getCurrentUser().getEmail();
