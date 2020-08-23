@@ -18,7 +18,7 @@ function init() {
     //$scoreRed.html(matchRed);
     //$scoreBlue.html(matchBlue);
     //$turn.html(turn);
-    
+    console.log("n: " + n + " m: " + m);
     for (let i = 0; i < n; i++) {
         for (let j = 0; j < m; j++) {
             console.log(board[i][j]);    
@@ -38,6 +38,7 @@ let addCardListener = function() {
     $deck.find('.card').bind('click', function() {
         let $this = $(this);
         if ($this.hasClass('open')) { return true; }
+        console.log("row: " + $this.attr("data-row") + "  col: " + $this.attr("data-col"));
         //send {$this.attr("data-row"),$this.attr("data-col")} to datastore
     });
 }

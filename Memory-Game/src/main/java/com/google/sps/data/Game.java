@@ -10,8 +10,8 @@ public class Game implements Chat{
 
     @Id private Long id;
 
-	private final int n = 5;
-	private final int m = 6;
+	private final int n = 6;
+	private final int m = 5;
 
 	@Serialize private int[][] board;
 	@Serialize private boolean[][] currentBoard;
@@ -166,6 +166,14 @@ public class Game implements Chat{
 	public Chance getChance(){
 		return chance;
 	}
+
+    public String getChanceAsString(){
+        if(chance == Chance.RED){
+            return "Red";
+        }else{
+            return "Blue";
+        }
+    }
 
 	public void flipChance(){
 		if(chance == Chance.RED){

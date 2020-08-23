@@ -10,7 +10,7 @@ import com.google.gson.Gson;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
-import com.google.sps.data.Game;
+import com.google.sps.data.*;
 import static com.google.sps.util.Util.*;
 
 import com.google.appengine.api.users.*;
@@ -29,12 +29,17 @@ public class InitGame extends HttpServlet{
         Game game = ofy().load().type(Game.class).id(inviteCode).now();
         System.out.println(game);
 
+        String email = UserServiceFactory.getUserService().getCurrentUser().getEmail();
+        TeamMember teamMember = game.getTeamMemberFromUser(email);
+
         Gson gson = new Gson();
 
         obj = new JSONObject();
         obj.put("board", gson.toJson(game.getBoard()));
         obj.put("redTeam", game.getRedTeam().getAllTeamMemberNicknames());
         obj.put("blueTeam", game.getBlueTeam().getAllTeamMemberNicknames());
+        obj.put("yourTeam", teamMember.getTeamName());
+        obj.put("chance", game.getChanceAsString());
 
         StringWriter out = new StringWriter();
         obj.writeJSONString(out);
