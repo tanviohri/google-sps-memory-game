@@ -14,6 +14,7 @@ function init() {
     n=board.length;
     m=board[0].length;
 
+    document.getElementById("your-team").innerHTML = sessionStorage.getItem("yourTeam");
     $turn.html(sessionStorage.getItem("chance"));
 
     console.log("n: " + n + " m: " + m);
