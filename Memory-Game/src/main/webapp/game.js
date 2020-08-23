@@ -6,23 +6,24 @@ nickName = "*";
 $deck = $('.deck');
 
 async function init(valOfInviteCode, valOfNickName) {
-    console.log(inviteCode);
-    window.location = "gameScreen.html";
-    inviteCode = valOfInviteCode;
-    nickName =  valOfNickName;
-    console.log(inviteCode);
-    var obj = {"inviteCode": inviteCode};
+    //console.log(inviteCode);
+    //var x= await change();
+    //console.log(inviteCode);
+    var obj = {"inviteCode": valOfInviteCode};
     const response = await fetch('/init-game', {
         method: 'POST',
         body: JSON.stringify(obj)
     });
     const game = await response.json();
+    window.location = "gameScreen.html";
+    inviteCode = valOfInviteCode;
+    nickName =  valOfNickName;
     console.log(game);
 
     let board=game["board"];
 
-    n=board.length();
-    m=board[0].length();
+    n=board.length;
+    m=board[0].length;
 
     $deck.empty();
 
