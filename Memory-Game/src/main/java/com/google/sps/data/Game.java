@@ -33,7 +33,7 @@ public class Game implements Chat{
 		// Shuffling the array
 		List<Integer> arr = new ArrayList<>();
 
-		for(int i = 1; i <= n * m / 2; i++){
+		for(int i = 0; i < n * m / 2; i++){
             arr.add(i);
             arr.add(i);
 		}
