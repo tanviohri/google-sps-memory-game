@@ -1,6 +1,7 @@
 window.customElements.define('speech-bubble', class extends HTMLElement {'p'});
 
 async function getMessages() {
+    if(sessionStorage.getItem("gameOver")=="true") return;
     var obj = {"inviteCode": sessionStorage.getItem("inviteCode")};
 
     var response = await fetch('/polling-chat', {

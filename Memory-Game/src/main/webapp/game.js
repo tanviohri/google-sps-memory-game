@@ -5,7 +5,7 @@ $scoreRed = $('.score-red'),
 $turn = $('.turn'),
 $scoreBlue = $('.score-blue'),
 $deck = $('.deck');
-var n, m;
+var n, m, distinctCards;
 
 function init() {
     let board = JSON.parse(sessionStorage.getItem("board"));
@@ -13,6 +13,7 @@ function init() {
     $deck.empty();
     n=board.length;
     m=board[0].length;
+    distinctCards = n * m / 2;
 
     document.getElementById("your-team").innerHTML = sessionStorage.getItem("yourTeam");
     $turn.html(sessionStorage.getItem("chance"));
@@ -52,6 +53,7 @@ async function addCardListener () {
 
 async function updateBoard()
 {
+    if(sessionStorage.getItem("gameOver")=="true") return;
     var obj = {"inviteCode": sessionStorage.getItem("inviteCode")};
 
     var response = await fetch('/polling-game', {
@@ -78,7 +80,15 @@ async function updateBoard()
         }
     }
 
+    if(game["redTeamScore"] > distinctCards / 2) gameOver("Red");
+    if(game["blueTeamScore"] > distinctCards / 2) gameOver("Blue");
     $scoreRed.html(game["redTeamScore"]);
     $scoreBlue.html(game["blueTeamScore"]);
     $turn.html(game["chance"]);
+}
+
+function gameOver(team) {
+    sessionStorage.setItem("gameOver", "true");
+    $('#winnerText').text(`${team} Team wins! Well done!`);
+    $('#winnerModal').modal('toggle');
 }

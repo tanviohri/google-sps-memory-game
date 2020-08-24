@@ -25,6 +25,7 @@ async function storeInfo() {
     //sessionStorage.setItem("blueTeam", game["blueTeam"]);
     sessionStorage.setItem("yourTeam", game["yourTeam"]);
     sessionStorage.setItem("chance", game["chance"]);
+    sessionStorage.setItem("gameOver", "false");
 
     window.location = "gameScreen.html"; 
 }
