@@ -21,7 +21,7 @@ public class Game implements Chat{
 
 	private ArrayList< TeamMember > userToTeamMember;
 
-	private ArrayList< Pair <Integer, Integer> > moves;
+	private ArrayList< Pair > moves;
 
 	// true -> red, false -> blue
 	private Chance chance;
@@ -128,15 +128,15 @@ public class Game implements Chat{
 	}
 
 	public void move(int row, int col){
-		moves.add(new Pair <Integer, Integer> (row, col));
+		moves.add(new Pair(row, col));
 		currentBoard[row][col] = !currentBoard[row][col];
 	}
 
-	private int getTileId(Pair <Integer, Integer> p){
+	private int getTileId(Pair p){
 		return board[p.getKey()][p.getValue()];
 	}
 
-	public void undoMove(Pair <Integer, Integer> p){
+	public void undoMove(Pair p){
 		currentBoard[p.getKey()][p.getValue()] = !currentBoard[p.getKey()][p.getValue()];	
 	}
 
@@ -145,7 +145,7 @@ public class Game implements Chat{
     }
 
     public void undoAllMoves(){
-        for(Pair <Integer, Integer> p : moves){
+        for(Pair p : moves){
             undoMove(p);
         }
         moves.clear();

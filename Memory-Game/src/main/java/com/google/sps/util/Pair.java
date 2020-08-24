@@ -1,26 +1,26 @@
 package com.google.sps.util;
 
-public class Pair<U, V>
+public class Pair
 {
-	public U first; 
-    public V second;
+	public int first; 
+    public int second;
 
     //  For Objectify
     public Pair(){
-        first = null;
-        second = null;
+        first = 0;
+        second = 0;
     }
 
-	public Pair(U first, V second){
+	public Pair(int first, int second){
 		this.first = first;
 		this.second = second;
 	}
 
-    public U getKey(){
+    public int getKey(){
         return first;
     }
 
-    public V getValue(){
+    public int getValue(){
         return second;
     }
 
@@ -29,19 +29,15 @@ public class Pair<U, V>
 
         if(o == null) return false;
         if(o == this) return true;
-		if (getClass() != o.getClass()) return false;
+		if(!(o instanceof Pair)) return false;
 
-		Pair<?, ?> that = (Pair<?, ?>) o;
-		if(this.first.equals(that.first) && this.second.equals(that.second)){
-            return true;
-        }else{
-            return false;
-        }
+        Pair that = (Pair) o;
+        return (first == that.first && second == that.second);
 	}
 
 	@Override
 	public int hashCode(){
-		return 31 * first.hashCode() + second.hashCode();
+		return 31 * first + second;
 	}
 
 	@Override
