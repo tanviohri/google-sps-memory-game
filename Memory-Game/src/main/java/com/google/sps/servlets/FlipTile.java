@@ -27,10 +27,6 @@ public class FlipTile extends HttpServlet{
         int row = Integer.parseInt((String)obj.get("row"));
         int col = Integer.parseInt((String)obj.get("col"));
 
-        System.out.println(inviteCode);
-        System.out.println(row);
-        System.out.println(col);
-
         Game game = ofy().load().type(Game.class).id(inviteCode).now();
         String email = UserServiceFactory.getUserService().getCurrentUser().getEmail();
         TeamMember teamMember = game.getTeamMemberFromUser(email);

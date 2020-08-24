@@ -1,7 +1,13 @@
 window.customElements.define('speech-bubble', class extends HTMLElement {'p'});
 
 async function getMessages() {
-    const response = await fetch('/polling-chat'); 
+    var obj = {"inviteCode": sessionStorage.getItem("inviteCode")};
+
+    var response = await fetch('/polling-chat', {
+        method: 'POST',
+        body: JSON.stringify(obj)
+    });
+
     const jsonObj = await response.json();
 
     teamMessages = jsonObj["teamChat"];
@@ -28,6 +34,28 @@ function createElement(currMessage) {
   return element;
 }
 
+async function sendRoomChatToServer()
+{
+    var obj = {"inviteCode": sessionStorage.getItem("inviteCode"), 
+    "message": document.getElementById("roomChatForm").elements["roomMsg"].value};
+
+    var response = await fetch('/group-chat', {
+        method: 'POST',
+        body: JSON.stringify(obj)
+    });
+}
+
+async function sendTeamChatToServer()
+{
+    var obj = {"inviteCode": sessionStorage.getItem("inviteCode"), 
+    "message": document.getElementById("teamChatForm").elements["teamMsg"].value};
+
+    var response = await fetch('/team-chat', {
+        method: 'POST',
+        body: JSON.stringify(obj)
+    });
+}
+
 function openForm(chatType) {
     document.getElementById(chatType + "Chat").style.display = "block";
 }
@@ -36,4 +64,4 @@ function closeForm(chatType) {
     document.getElementById(chatType + "Chat").style.display = "none";
 }
 
-//var myVar = setInterval(getMessages, 1000);
+var myVar = setInterval(getMessages, 1000);
