@@ -33,10 +33,12 @@
 	<div class="chat-popup" id="roomChat" style="right:12px">
 		<form action="javascript:sendRoomChatToServer();" class="chat-form-container" id="roomChatForm">
 			<font color="black">
-				<h2>Room Chat</h2>
+                    <h2>Room Chat</h2>
+                <div id="room-chat-container"></div>
+                <br>
+                <br>
+                <textarea placeholder="Type message.." name="roomMsg" required></textarea>
 			</font>
-            <div id="room-chat-container"></div>
-			<textarea placeholder="Type message.." name="roomMsg" required></textarea>
 
 			<button type="submit" class="btn">Send</button>
 			<button type="button" class="btn cancel" onclick="closeForm('room')">Close</button>

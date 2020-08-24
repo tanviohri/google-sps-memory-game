@@ -12,23 +12,24 @@ async function getMessages() {
     const jsonObj = await response.json();
 
     teamMessages = JSON.parse(jsonObj["teamChat"]);
-    console.log("Team messages: " + teamMessages);
+    document.getElementById('team-chat-container').innerHTML = ""; 
     teamContainer=document.getElementById('team-chat-container');
     teamMessages.forEach((message) => {
         teamContainer.appendChild(createElement(message));
     });
 
     roomMessages = JSON.parse(jsonObj["groupChat"]);
-    console.log("room messages: " + roomMessages);
+    document.getElementById('room-chat-container').innerHTML = ""; 
     roomContainer=document.getElementById('room-chat-container');
     roomMessages.forEach((message) => {
+        console.log(message);
         roomContainer.appendChild(createElement(message));
     }); 
 }
 
 function createElement(currMessage) {
   const element = document.createElement('speech-bubble');
-  element.innerHTML = "<b>" + currMessage.teamMember.nickname + "</b> <br>" + currMessage.text;
+  element.innerHTML = "<br><br> <b>" + currMessage.teamMember.nickname + ": </b>" + currMessage.text;
 
   return element;
 }
