@@ -10,23 +10,19 @@ async function getMessages() {
 
     const jsonObj = await response.json();
 
-    teamMessages = jsonObj["teamChat"];
-    console.log(teamMessages);
+    teamMessages = JSON.parse(jsonObj["teamChat"]);
+    console.log("Team messages: " + teamMessages);
     teamContainer=document.getElementById('team-chat-container');
-    teamMessages.map(function(currMessage){
-        teamContainer.appendChild(
-            createElement(currMessage)
-        );
+    teamMessages.forEach((message) => {
+        teamContainer.appendChild(createElement(message));
     });
 
-    roomMessages = jsonObj["groupChat"];
-    console.log(roomMessages);
+    roomMessages = JSON.parse(jsonObj["groupChat"]);
+    console.log("room messages: " + roomMessages);
     roomContainer=document.getElementById('room-chat-container');
-    roomMessages.map(function(currMessage){
-        roomContainer.appendChild(
-            createElement(currMessage)
-        );
-    });
+    roomMessages.forEach((message) => {
+        roomContainer.appendChild(createElement(message));
+    }); 
 }
 
 function createElement(currMessage) {
