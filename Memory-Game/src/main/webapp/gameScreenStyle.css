@@ -46,11 +46,16 @@ speech-bubble:after {
 	margin-right: -20px;
 }
 
+.divider{
+    width:100px;
+    height:auto;
+    float:left;
+}
+
 .container {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+    margin-left: 105px;
 }
 
 h1 {

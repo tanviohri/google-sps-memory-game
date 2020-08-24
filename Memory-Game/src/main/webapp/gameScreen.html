@@ -19,9 +19,11 @@
 		<form action="javascript:sendTeamChatToServer();" class="chat-form-container" id="teamChatForm">
 			<font color="black">
 				<h2>Team Chat</h2>
+                <div id="team-chat-container"></div>
+                <br>
+                <br>
+                <textarea placeholder="Type message.." name="teamMsg" required></textarea>
 			</font>
-            <div id="team-chat-container"></div>
-			<textarea placeholder="Type message.." name="teamMsg" required></textarea>
 
 			<button type="submit" class="btn">Send</button>
 			<button type="button" class="btn cancel" onclick="closeForm('team')">Close</button>
@@ -65,9 +67,27 @@
 				</div>
 			</div>
 		</div>
-	</font>
-	<div class="container">
-		<section class="score-panel">
+	</font>  
+    <div style="float:left">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        Game Instructions: <br>
+        <ul>
+            <li>You can see your team, the score of both teams <br> and which team's chance it is above the board.</li>
+            <li>The chances alternate between teams.</li>
+            <li>Only the admin of the team (the first person who <br> joined the team) can play the chance. </li>
+            <li>The admin can click 2 tiles in every chance. If they <br> match, your team score goes up by 1.</li>
+            <li>A team wins by uncovering more than half the tiles.</li>
+        <li>You can collaborate with your team members using the <br> Team Chat and also talk to the other teams using the <br> Room Chat.</li>
+        </ul>
+    </div>
+     <div class="divider"/>     
+	<div class="container" style="float:left"> 
+		<div class="score-panel" >
             Hey There! You are playing for the <span id="your-team"></span> Team!
             <br>
             <br>
@@ -76,9 +96,9 @@
 			</font>
 			<br>
                 Chance: <span class="turn">Red</span> Team
-		</section>
-		<ul class="deck"></ul>
-	</div>
+		</div>
+	    <div>  <ul class="deck"></ul> </div>
+    </div>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js'></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">

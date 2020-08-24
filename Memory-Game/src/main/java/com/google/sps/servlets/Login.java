@@ -26,7 +26,7 @@ public class Login extends HttpServlet{
             String urlToRedirectToAfterUserLogsIn = "/";
             String loginUrl = userService.createLoginURL(urlToRedirectToAfterUserLogsIn);
 
-            out.println("<p>Login <a href=\"" + loginUrl + "\">here</a> before you proceed further...</p>");
+            out.println("<p>MANDATORY: Login <a href=\"" + loginUrl + "\">here</a> before you proceed further...</p>");
         }
 
     }
