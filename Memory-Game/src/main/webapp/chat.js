@@ -12,6 +12,7 @@ async function getMessages() {
     const jsonObj = await response.json();
 
     teamMessages = jsonObj["teamChat"];
+    console.log(teamMessages);
     teamContainer=document.getElementById('team-chat-container');
     teamMessages.map(function(currMessage){
         teamContainer.appendChild(
@@ -20,6 +21,7 @@ async function getMessages() {
     });
 
     roomMessages = jsonObj["groupChat"];
+    console.log(roomMessages);
     roomContainer=document.getElementById('room-chat-container');
     roomMessages.map(function(currMessage){
         roomContainer.appendChild(

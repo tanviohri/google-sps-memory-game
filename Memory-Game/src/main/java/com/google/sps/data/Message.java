@@ -2,9 +2,9 @@ package com.google.sps.data;
 
 public class Message{
 
-	private final TeamMember teamMember;
-	private final long time;
-	private final String text;
+	private TeamMember teamMember;
+	private long time;
+	private String text;
 
     //necessary for objectify
     public Message(){
