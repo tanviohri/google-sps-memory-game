@@ -35,6 +35,7 @@ public class PollingChat extends HttpServlet{
 
         response.setContentType("application/json");
         response.getWriter().println(out.toString());
+        System.out.println("Request sent: " + out.toString());
     }
 
 }

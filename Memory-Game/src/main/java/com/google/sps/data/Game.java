@@ -103,7 +103,7 @@ public class Game implements Chat{
 	}
 
     public ArrayList<Message> getAllTeamMessages(TeamMember teamMember){
-        if(teamMember.getTeamName() == "Red"){
+        if(teamMember.getTeamName().equals("Red")){
             return red.getAllMessages();
         }else{
             return blue.getAllMessages();

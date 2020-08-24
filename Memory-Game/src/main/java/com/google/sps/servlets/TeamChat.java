@@ -29,6 +29,7 @@ public class TeamChat extends HttpServlet{
 
         game.addMessageInTeamChat(new Message(teamMember, System.currentTimeMillis(), text));
         ofy().save().entity(game).now();
+        System.out.println(game);
     }
 
 }
