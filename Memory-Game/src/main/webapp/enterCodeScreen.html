@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body class="body">
+    <header class="masthead">
+        <div class="container">
+            <h1 class="title">Welcome to the ultimate memory challenge!</h1>
+            <p>Before entering the room set your nickname.</p>
+            <form action="javascript:storeInfo();" id="infoForm">
+                <textarea placeholder="Enter code" name="inviteCode" required></textarea><br>
+                <textarea placeholder="Enter nickname" name="nickName" required></textarea><br>
+                <input type="submit" value="Enter Room" class="buttons"/> 
+            </form>
+            <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js'></script>
+            <script src="./setGameVariables.js"></script>  
+        </div>
+    </header>
+  </body>
+</html>

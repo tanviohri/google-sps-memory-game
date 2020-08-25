@@ -1,0 +1,15 @@
+.container{
+    margin-top:14em;
+}
+.body{
+    text-align: center;
+    background-color: black;
+    color: lightskyblue;
+    font-style: italic;
+}
+.buttons{
+    background-color: lightskyblue;
+    min-width: 15%;
+    min-height: 2em;
+    padding:1em;
+}
