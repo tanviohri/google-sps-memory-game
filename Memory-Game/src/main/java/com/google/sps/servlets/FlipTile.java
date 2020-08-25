@@ -20,9 +20,6 @@ public class FlipTile extends HttpServlet{
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
 
         JSONObject obj = getJsonObjectFromRequest(request);
-
-        System.out.println(obj);
-        
         long inviteCode = Long.parseLong((String)obj.get("inviteCode"));
         int row = Integer.parseInt((String)obj.get("row"));
         int col = Integer.parseInt((String)obj.get("col"));

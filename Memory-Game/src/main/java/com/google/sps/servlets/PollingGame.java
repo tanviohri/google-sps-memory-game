@@ -21,13 +21,7 @@ public class PollingGame extends HttpServlet{
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
 
         JSONObject obj = getJsonObjectFromRequest(request);
-        
-        System.out.println(obj);
-
         long inviteCode = Long.parseLong((String)obj.get("inviteCode"));
-
-        System.out.println(inviteCode);
-
         Game game = ofy().load().type(Game.class).id(inviteCode).now();
 
         Gson gson = new Gson();
@@ -44,5 +38,4 @@ public class PollingGame extends HttpServlet{
         response.setContentType("application/json");
         response.getWriter().println(out.toString());
     }
-
 }

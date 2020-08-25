@@ -23,16 +23,11 @@ public class GroupChat extends HttpServlet{
         long inviteCode = Long.parseLong((String)obj.get("inviteCode"));
         String text = (String) obj.get("message");
 
-        System.out.println(obj);
-        System.out.println(text);
-
         Game game = ofy().load().type(Game.class).id(inviteCode).now();
         String email = UserServiceFactory.getUserService().getCurrentUser().getEmail();
         TeamMember teamMember = game.getTeamMemberFromUser(email);
 
         game.addMessage(new Message(teamMember, System.currentTimeMillis(), text));
         ofy().save().entity(game).now();
-        System.out.println(game);
     }
-
 }

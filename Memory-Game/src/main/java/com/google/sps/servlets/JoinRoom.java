@@ -22,19 +22,14 @@ public class JoinRoom extends HttpServlet{
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
 
         JSONObject obj = getJsonObjectFromRequest(request);
-
         long inviteCode = Long.parseLong((String) obj.get("inviteCode"));
         String nickName = (String) obj.get("nickName");
-
-        System.out.println(obj);
 
         String email = UserServiceFactory.getUserService().getCurrentUser().getEmail();
         assert(UserServiceFactory.getUserService().isUserLoggedIn());
 
         Game game = ofy().load().type(Game.class).id(inviteCode).now();
         game.addUser(email, nickName);
-        System.out.println(game);
         ofy().save().entity(game).now();
-        System.out.println("data saved");
     }
 }

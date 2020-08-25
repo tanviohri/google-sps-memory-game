@@ -9,7 +9,6 @@ var n, m, distinctCards;
 
 function init() {
     let board = JSON.parse(sessionStorage.getItem("board"));
-    console.log(board);
     $deck.empty();
     n=board.length;
     m=board[0].length;
@@ -17,14 +16,6 @@ function init() {
 
     document.getElementById("your-team").innerHTML = sessionStorage.getItem("yourTeam");
     $turn.html(sessionStorage.getItem("chance"));
-
-    console.log("n: " + n + " m: " + m);
-
-    /*for (let i = 0; i < n; i++) {
-        for (let j = 0; j < m; j++) {
-            console.log(board[i][j]);    
-        }
-    }  */
 
     for (let i = 0; i < n; i++) {
         for (let j = 0; j < m; j++) {
@@ -39,7 +30,6 @@ async function addCardListener () {
     $deck.find('.card').bind('click', async function() {
         let $this = $(this);
         if ($this.hasClass('open')) { return true; }
-        console.log("row: " + $this.attr("data-row") + "  col: " + $this.attr("data-col"));
 
         var obj = {"inviteCode": sessionStorage.getItem("inviteCode"), "row": $this.attr("data-row"),
         "col" : $this.attr("data-col")};

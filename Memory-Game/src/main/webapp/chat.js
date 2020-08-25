@@ -22,7 +22,6 @@ async function getMessages() {
     document.getElementById('room-chat-container').innerHTML = ""; 
     roomContainer=document.getElementById('room-chat-container');
     roomMessages.forEach((message) => {
-        console.log(message);
         roomContainer.appendChild(createElement(message));
     }); 
 }

@@ -23,11 +23,7 @@ public class InitGame extends HttpServlet{
 
         JSONObject obj = getJsonObjectFromRequest(request);
         long inviteCode = Long.parseLong((String) obj.get("inviteCode"));
-
-        System.out.println(obj);
-
         Game game = ofy().load().type(Game.class).id(inviteCode).now();
-        System.out.println(game);
 
         String email = UserServiceFactory.getUserService().getCurrentUser().getEmail();
         TeamMember teamMember = game.getTeamMemberFromUser(email);
@@ -36,8 +32,6 @@ public class InitGame extends HttpServlet{
 
         obj = new JSONObject();
         obj.put("board", gson.toJson(game.getBoard()));
-        //obj.put("redTeam", game.getRedTeam().getAllTeamMemberNicknames());
-        //obj.put("blueTeam", game.getBlueTeam().getAllTeamMemberNicknames());
         obj.put("yourTeam", teamMember.getTeamName());
         obj.put("chance", game.getChanceAsString());
 
@@ -46,7 +40,5 @@ public class InitGame extends HttpServlet{
 
         response.setContentType("application/json");
         response.getWriter().println(out.toString());
-        System.out.println("data sent: " + out.toString());
     }
-
 }

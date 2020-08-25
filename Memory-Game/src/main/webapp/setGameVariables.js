@@ -17,12 +17,8 @@ async function storeInfo() {
         body: JSON.stringify(obj)
     });
     const game = await response.json();
-    
-    console.log(game);
 
     sessionStorage.setItem("board", game["board"]);
-    //sessionStorage.setItem("redTeam", game["redTeam"]);
-    //sessionStorage.setItem("blueTeam", game["blueTeam"]);
     sessionStorage.setItem("yourTeam", game["yourTeam"]);
     sessionStorage.setItem("chance", game["chance"]);
     sessionStorage.setItem("gameOver", "false");
